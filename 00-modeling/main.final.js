@@ -62,3 +62,8 @@ function playerMachine2(state, event) {
     value: nextStateValue,
   };
 }
+
+// first time
+console.log(playerMachine2(initialState, { type: 'LOADED' }));
+// subsequent
+console.log(playerMachine2(undefined, { type: 'PAUSE' }));

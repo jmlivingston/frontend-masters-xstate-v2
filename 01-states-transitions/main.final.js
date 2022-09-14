@@ -1,6 +1,5 @@
-// @ts-check
+import { createMachine, interpret } from 'xstate';
 import '../style.css';
-import { createMachine, assign, interpret, send } from 'xstate';
 import elements from '../utils/elements';
 
 const playerMachine = createMachine({
@@ -26,10 +25,10 @@ const playerMachine = createMachine({
 
 const service = interpret(playerMachine).start();
 
-elements.elPlayButton.addEventListener('click', () => {
+elements.elPlayButton?.addEventListener('click', () => {
   service.send({ type: 'PLAY' });
 });
-elements.elPauseButton.addEventListener('click', () => {
+elements.elPauseButton?.addEventListener('click', () => {
   service.send({ type: 'PAUSE' });
 });
 

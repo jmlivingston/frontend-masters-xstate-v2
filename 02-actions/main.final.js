@@ -1,7 +1,6 @@
-// @ts-check
-import '../style.css';
-import { createMachine, assign, interpret, send } from 'xstate';
+import { createMachine, interpret } from 'xstate';
 import { raise } from 'xstate/lib/actions';
+import '../style.css';
 import elements from '../utils/elements';
 
 const playerMachine = createMachine({
@@ -60,19 +59,19 @@ const playerMachine = createMachine({
   },
 });
 
-elements.elPlayButton.addEventListener('click', () => {
+elements.elPlayButton?.addEventListener('click', () => {
   service.send({ type: 'PLAY' });
 });
-elements.elPauseButton.addEventListener('click', () => {
+elements.elPauseButton?.addEventListener('click', () => {
   service.send({ type: 'PAUSE' });
 });
-elements.elSkipButton.addEventListener('click', () => {
+elements.elSkipButton?.addEventListener('click', () => {
   service.send({ type: 'SKIP' });
 });
-elements.elLikeButton.addEventListener('click', () => {
+elements.elLikeButton?.addEventListener('click', () => {
   service.send({ type: 'LIKE' });
 });
-elements.elDislikeButton.addEventListener('click', () => {
+elements.elDislikeButton?.addEventListener('click', () => {
   service.send({ type: 'DISLIKE' });
 });
 

@@ -1,10 +1,8 @@
-// @ts-check
-import '../style.css';
-import { createMachine, assign, interpret, send } from 'xstate';
+import { assign, createMachine, interpret, send } from 'xstate';
 import { raise } from 'xstate/lib/actions';
-import { inspect } from '@xstate/inspect';
-import { formatTime } from '../utils/formatTime';
+import '../style.css';
 import elements from '../utils/elements';
+import { formatTime } from '../utils/formatTime';
 
 // inspect({
 //   iframe: false,
@@ -47,7 +45,7 @@ function createFakeAudio(duration) {
 const invokeAudio = (ctx) => (sendBack, receive) => {
   const audio = createFakeAudio(ctx.duration);
 
-  audio.addEventListener('timeupdate', () => {
+  audio?.addEventListener('timeupdate', () => {
     sendBack({
       type: 'AUDIO.TIME',
       duration: parseInt(audio.duration),
@@ -234,25 +232,25 @@ const playerMachine = createMachine({
 const service = interpret(playerMachine, { devTools: true }).start();
 window.service = service;
 
-elements.elPlayButton.addEventListener('click', () => {
+elements.elPlayButton?.addEventListener('click', () => {
   service.send({ type: 'PLAY' });
 });
-elements.elPauseButton.addEventListener('click', () => {
+elements.elPauseButton?.addEventListener('click', () => {
   service.send({ type: 'PAUSE' });
 });
-elements.elSkipButton.addEventListener('click', () => {
+elements.elSkipButton?.addEventListener('click', () => {
   service.send({ type: 'SKIP' });
 });
-elements.elLikeButton.addEventListener('click', () => {
+elements.elLikeButton?.addEventListener('click', () => {
   service.send({ type: 'LIKE.TOGGLE' });
 });
-elements.elDislikeButton.addEventListener('click', () => {
+elements.elDislikeButton?.addEventListener('click', () => {
   service.send({ type: 'DISLIKE' });
 });
-elements.elVolumeButton.addEventListener('click', () => {
+elements.elVolumeButton?.addEventListener('click', () => {
   service.send({ type: 'VOLUME.TOGGLE' });
 });
-elements.elScrubberInput.addEventListener('change', (e) => {
+elements.elScrubberInput?.addEventListener('change', (e) => {
   console.log(e.target.valueAsNumber);
 });
 service.subscribe((state) => {
