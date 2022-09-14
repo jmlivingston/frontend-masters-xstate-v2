@@ -7,10 +7,15 @@
     "serve": "vite preview"
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
     "vite": "^2.6.4"
   },
   "dependencies": {
     "@xstate/inspect": "^0.5.0",
     "xstate": "^4.25.0"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
   }
 }
